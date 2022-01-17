@@ -21,7 +21,7 @@ if(!$user){
 //ツイートがある場合
 if(isset($_POST['body'])){
     $image_name =null;
-    if(isset($_FILES['image'])&& is_uploaded_file($_FILES['image']['tmp_name'])){   
+    if(isset($_FILES['image'])&& is_uploaded_file($_FILES['image']['tmp_name'])){    
         $image_name = uploadImage($user,$_FILES['image'],'tweet');
     }
 
@@ -29,7 +29,7 @@ if(isset($_POST['body'])){
         'user_id'=>$user['id'],
         'body'=>$_POST['body'],
         'image_name'=>$image_name,  
-    ];
+    ]; 
 
     //つぶやき投稿
     if(createTweet($data)){

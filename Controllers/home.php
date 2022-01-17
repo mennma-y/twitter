@@ -22,8 +22,8 @@ if(!$user){
 //表示用変数
 $view_user = $user; 
 
-//ツイート一覧をモデルから取得する
-$view_tweets = findTweets($user);
+//ツイート一覧
+$view_tweets = findTweets($user); 
 //     [
 //         'user_id' => 1,
 //         'user_name' => 'taro',

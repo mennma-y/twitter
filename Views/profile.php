@@ -34,7 +34,7 @@ $view_tweets=[
             </div>
             
             <!-- プロフィールエリア -->
-            <div class="profile-area">
+            <div class="profile-area"> 
                 <div class="top">
                     <div class="user"><img src="<?php echo HOME_URL;?>Views/img_uploaded/user/sample-person.jpg" alt=""></div>
 

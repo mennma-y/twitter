@@ -1,7 +1,7 @@
                 <div class="tweet">
                     <div class="user">
                         <a href="profile.php?user_id=<?php echo htmlspecialchars($view_tweet['user_id']); ?>">
-                        <img src="<?php echo buildImagePath($view_tweet['user_image_name'],'user'); ?>" alt="">
+                        <img src="<?php echo buildImagePath($view_tweet['user_image_name'],'user'); ?>" alt=""> 
                         </a>
                     </div>
                     <div class="content">
@@ -18,7 +18,7 @@
                         <?php endif ;?>
 
                         <div class="icon-list">
-                            <div class="like js-like" data-like-id="<?php echo htmlspecialchars($view_tweet['like_id']); ?>">
+                            <div class="like js-like" data-tweet-id="<?php echo htmlspecialchars($view_tweet['tweet_id']); ?>" data-like-id="<?php echo htmlspecialchars($view_tweet['like_id']); ?>">
                                 <?php if(isset($view_tweet['like_id'])){
                                     echo '<img src="'.HOME_URL.'Views/img/icon-heart-twitterblue.svg" alt="">';
                                 }else{
@@ -26,7 +26,7 @@
                                 }
                                 ?>
                             </div>
-                            <div class="like-count js-like-count"><?php echo $view_tweet['like_count'];?></div>
+                            <div class="like-count js-like-count"><?php echo $view_tweet['like_count'];?></div>  
                         </div>
                     </div>
                 </div>
