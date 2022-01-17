@@ -331,3 +331,6 @@ body.signup{
     margin-bottom: 8px;
 }
 
+.text-sm{
+    font-size: 0.7rem;
+}

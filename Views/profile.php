@@ -12,7 +12,7 @@ $view_tweets=[
         'user_image_name'=>'sample-person.jpg',
         'tweet_body'=>'今プログラミングをしています。',
         'tweet_image_name'=>null,
-        'tweet_created_at'=>'2022-01-14 14:00:00',
+        'tweet_created_at'=>'2022-01-14 14:00:00',  
         'like_id'=>null,
         'like_count'=>0,
     ],
