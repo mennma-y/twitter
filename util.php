@@ -107,7 +107,7 @@ function getUserSession()
     // 画像のファイル名からファイルのURLを取得
     if (!isset($user['image_name'])) {
         $user['image_name'] = null;
-    }
+    }  
     $user['image_path'] = buildImagePath($user['image_name'], 'user'); 
 
     return $user;
