@@ -8,7 +8,7 @@ $(function () {
         const this_obj = $(this);
         const tweet_id = $(this).data('tweet-id');
         const like_id = $(this).data('like-id');
-        const like_count_obj = $(this).parent().find('.js-like-count');
+        const like_count_obj = $(this).parent().find('.js-like-count');  
         let like_count = Number(like_count_obj.html());
  
         if (like_id) {

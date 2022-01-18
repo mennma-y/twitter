@@ -39,11 +39,11 @@ function createTweet(array $data)
 
 }
 
-// ツイート一覧を取得
-function findTweets(array $user, string $keyword = null)
+// ツイート一覧を取得  useridsはユーザーID一覧
+function findTweets(array $user, string $keyword = null, array $user_ids = null)
 {
     //DB接続
-    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME); 
+    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);   
 
     //接続エラーがある場合->処理停止
     if($mysqli->connect_errno){
@@ -88,6 +88,15 @@ function findTweets(array $user, string $keyword = null)
         $query .= ' AND CONCAT(U.nickname, U.name, T.body) LIKE "%'. $keyword .'%"'; 
     }
 
+     // ユーザーIDが指定されている場合
+     if (isset($user_ids)) {
+        foreach ($user_ids as $key => $user_id) {
+            $user_ids[$key] = $mysqli->real_escape_string($user_id);
+        }
+        $user_ids_csv = '"' . join('","', $user_ids) . '"';
+        // ユーザーID一覧に含まれるユーザーで絞る
+        $query .= ' AND T.user_id IN (' . $user_ids_csv . ')';
+    }
     //新しい順に並び替え
     $query .='ORDER BY T.created_at DESC';
     //表示件数を50件までにする
