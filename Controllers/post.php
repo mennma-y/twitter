@@ -37,7 +37,7 @@ if(isset($_POST['body'])){
         header('Location:'.HOME_URL.'Controllers/home.php');  
         exit;
     }
-}
+}  
 
 
 //表示用変数

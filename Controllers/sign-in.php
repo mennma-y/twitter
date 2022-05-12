@@ -8,7 +8,7 @@ include_once('../config.php');
 //便利な関数
 include_once('../util.php');
 
-include_once('../Models/users.php');
+include_once('../Models/users.php');  
 
 //ログイン結果
 $try_login_result = null;
@@ -27,7 +27,7 @@ if(isset($_POST['email'])&&isset($_POST['password'])){
         exit;
     }else{
         //ログイン結果を失敗にする
-        $try_login_result = false;
+        $try_login_result = false;      
 
     }
 

@@ -120,7 +120,7 @@ function uploadImage(array $user,array $file,string $type)
     $image_extension =strrchr($file['name'],'.');
 
     //画像のファイル名を作成
-    $image_name = $user['id'].'_'.date('YmdHis').$image_extension;
+    $image_name = $user['id'].'_'.date('YmdHis').$image_extension; 
 
     //保存先のディレクトリ
     $directory = '../Views/img_uploaded/'.$type.'/';

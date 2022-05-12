@@ -25,7 +25,7 @@ $(function () {
                     // フォローボタンの文言変更
                     this_obj.text('フォローする');
                     // フォローIDを削除
-                    this_obj.data('follow-id', null);
+                    this_obj.data('follow-id', null);   
                 })
                 // 取り消し失敗
                 .fail((data) => {
@@ -49,11 +49,11 @@ $(function () {
                     // フォローボタンの文言変更
                     this_obj.text('フォローを外す');
                     // フォローIDを付与
-                    this_obj.data('follow-id', data['follow_id']);
+                    this_obj.data('follow-id', data['follow_id']); 
                 })
                 // フォロー失敗
                 .fail((data) => {
-                    alert('処理中にエラーが発生しました。');
+                    alert('処理中にエラーが発生しました。'); 
                     console.log(data);
                 });
         }

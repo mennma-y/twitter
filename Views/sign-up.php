@@ -21,7 +21,7 @@
             <p class="mt-2 mb-3 text-muted">&copy; 2021</p>
         </form>
     </main>
-    <?php include_once('../Views/common/foot.php') ;?>
+    <?php include_once('../Views/common/foot.php') ;?>  
 </body>
 
 </html>

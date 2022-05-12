@@ -11,15 +11,21 @@ include_once '../util.php';
 //ツイートデータ操作モデルを読み込む
 include_once '../Models/follows.php';
 
+//通知データ操作モデルを読み込む
+include_once '../Models/notification.php';  
+
+//ツイートデータ操作モデルを読み込む
+include_once '../Models/tweets.php';
+
 // ログインチェック
 $user = getUserSession();
 if(!$user){
-    //ログインしていない
+    //ログインしていない 
     header('HTTP/1.0 404 Not Found'); 
     exit;
 }
 
-// フォローする
+// フォローする->followed_user_idを送信し、follow_idのinsertを返す  
 $follow_id = null;
 if(isset($_POST['followed_user_id'])){
     $data =[
@@ -28,12 +34,20 @@ if(isset($_POST['followed_user_id'])){
     ];
     //フォロー登録
     $follow_id = createFollow($data);
+
+    // 通知を登録
+    $data_notification = [
+        'received_user_id' => $_POST['followed_user_id'],
+        'sent_user_id' => $user['id'],
+        'message' => 'フォローされました。',
+    ];
+    createNotification($data_notification);
 }
 
-//フォロー削除
+//フォロー削除->follow_idを送信し、statusがdeletedに変わるようにする  
 if(isset($_POST['follow_id'])){
     $data =[
-        'follow_id'=>$_POST['follow_id'],
+        'follow_id'=>$_POST['follow_id'], 
         'follow_user_id'=>$user['id'],
     ];
     //フォロー解除

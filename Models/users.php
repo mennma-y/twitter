@@ -99,15 +99,15 @@ function findUserAndCheckPassword(string $email , string $password):array
 
 }
 
-//ユーザー情報を1件取得
+//ユーザー情報を1件取得  
 function findUser(int $user_id,int $login_user_id=null)
 {
     //DB接続
     $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
     //接続エラーがある場合->処理中止
-    if($mysqli->connect_errno){
-        echo 'MySQLの接続に失敗しました。:'.$mysqli->connect_error ."\n"; 
+    if($mysqli->connect_errno){  
+        echo 'MySQLの接続に失敗しました。:'.$mysqli->connect_error ."\n";   
 
         exit;
     }
@@ -127,7 +127,7 @@ function findUser(int $user_id,int $login_user_id=null)
             -- フォロー中の数
             (SELECT COUNT(1) FROM follows WHERE status = 'active' AND follow_user_id = U.id) AS follow_user_count,
             -- フォローワーの数
-            (SELECT COUNT(1) FROM follows WHERe status = 'active' AND followed_user_id = U.id) AS followed_user_count,
+            (SELECT COUNT(1) FROM follows WHERe status = 'active' AND followed_user_id = U.id) AS followed_user_count, 
             -- ログインユーザーがフォローしている場合、フォローIDが入る
             F.id AS follow_id
         FROM
@@ -136,6 +136,7 @@ function findUser(int $user_id,int $login_user_id=null)
                 follows AS F ON F.status = 'active' AND F.followed_user_id = '$user_id' AND F.follow_user_id = '$login_user_id'
         WHERE
             U.status = 'active' AND U.id = '$user_id'
+            -- ユーザーIDは表示中のユーザーIDに絞る！-- 
     SQL;
         
         
@@ -191,7 +192,7 @@ function updateUser(array $data)
  
     // クエリ組み立て
     $query = 'UPDATE users SET ' . join(',', $set_columns);
-    $query .= ' WHERE id = "' . $mysqli->real_escape_string($data['id']) . '"';
+    $query .= ' WHERE id = ' . $mysqli->real_escape_string($data['id']) . '';
  
     // ------------------------------------
     // 戻り値を作成

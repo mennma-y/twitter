@@ -9,7 +9,7 @@ include_once '../util.php';
 include_once '../Models/users.php';
 
 //ツイートモデルの読み込み
-include_once '../Models/tweets.php';
+include_once '../Models/tweets.php';  
 
 // ------------------------------------
 // ログインチェック
@@ -35,12 +35,12 @@ if(isset($_POST['nickname'])&&isset($_POST['name'])&&isset($_POST['email'])){
         $data['password'] = $_POST['password'];
     }
     //ファイルがアップロードされていた場合->画像をアップロード
-    if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name'])){
+    if(isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name'])){ 
         $data['image_name'] = uploadImage($user,$_FILES['image'],'user');  
     }
     //更新を実行し、成功した場合
     if(updateUser($data)){
-        //更新後のユーザー情報をセッションに保存する
+        //更新後のユーザー情報をセッションに保存する  
         $user = findUser($user['id']);
         saveUserSession($user);
         //リロード
@@ -51,9 +51,9 @@ if(isset($_POST['nickname'])&&isset($_POST['name'])&&isset($_POST['email'])){
 }
 
 //表示するユーザーIDを取得(デフォルトはログインユーザーなので1行目に定義する)
-$requestedUserId = $user['id']; //初期値としてログインユーザーのIDを定義
-if(isset($_GET['user_id'])){
-    $requestedUserId =$_GET['user_id'];
+$requestedUserId = $user['id']; //初期値としてログインユーザーのIDを定義 
+if(isset($_GET['user_id'])){    
+    $requestedUserId =$_GET['user_id'];  
 }
 
 
@@ -61,11 +61,14 @@ if(isset($_GET['user_id'])){
 
 //表示用の変数(ユーザー情報)
 $view_user = $user;
-//表示用の変数(プロフィール詳細)
+//表示用の変数(プロフィール詳細)　第一引数に表示するユーザーのIDを入れて、第二引数にはログインしている自分のユーザーIDを入れる。
+//ログインしているユーザーが表示対象のユーザーをフォローしているかどうかを判断するために、第二引数に入れている。
+//第一引数がログイン中の自分のIDの場合は第二引数はnullとなる。
+
 $view_requested_user = findUser($requestedUserId,$user['id']);   
 
 //ツイート一覧
-$view_tweets = findTweets($user,null,[$requestedUserId]);
+$view_tweets = findTweets($user,null,[$requestedUserId]); 
 
 
 

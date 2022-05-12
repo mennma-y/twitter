@@ -11,6 +11,9 @@ include_once '../util.php';
 //ツイートデータ操作モデルを読み込む
 include_once '../Models/tweets.php';
 
+//フォローデータ操作モデルを読み込む
+include_once '../Models/follows.php';
+
 // ログインチェック
 $user = getUserSession();
 if(!$user){
@@ -19,11 +22,17 @@ if(!$user){
     exit;
 }
 
+//自分がフォローしているID一覧
+$following_user_ids = findFollowingUserIds($user['id']); 
+
+//自分のツイートも表示するために自分のIDも追加
+$following_user_ids[]=$user['id'];   
+
 //表示用変数
-$view_user = $user; 
+$view_user = $user;   
 
 //ツイート一覧
-$view_tweets = findTweets($user); 
+$view_tweets = findTweets($user,null,$following_user_ids); 
 //     [
 //         'user_id' => 1,
 //         'user_name' => 'taro',

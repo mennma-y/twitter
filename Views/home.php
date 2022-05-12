@@ -7,7 +7,7 @@
 </head>
 <body class="home">
     <div class="container">
-        <?php include_once('../Views/common/side.php') ;?>
+        <?php include_once('../Views/common/side.php') ;?>  
         
         <div class="main">
             <div class="main-header">
@@ -34,11 +34,11 @@
             <div class="ditch"></div>
             <!-- つぶやき一覧エリア -->
             <?php if(empty($view_tweets)): ?>
-                <p class="p-3">ツイートがありません</p>  
+                <p class="p-3">ツイートがありません</p>   
             <?php else : ?>
             
             <div class="tweet-list">
-            <?php foreach($view_tweets as $view_tweet) : ?>
+            <?php foreach($view_tweets as $view_tweet) : ?>  
                 <?php include('../Views/common/tweet.php'); ?>
             <?php endforeach ;?>
             </div>
